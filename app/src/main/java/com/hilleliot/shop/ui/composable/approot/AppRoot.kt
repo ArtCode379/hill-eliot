@@ -62,6 +62,7 @@ private val bottomBarHiddenScreens: List<KClass<out NavRoute>> = listOf(
     NavRoute.Onboarding::class,
     NavRoute.ProductDetails::class,
     NavRoute.Checkout::class,
+    NavRoute.ArticleDetail::class,
 )
 
 @Composable

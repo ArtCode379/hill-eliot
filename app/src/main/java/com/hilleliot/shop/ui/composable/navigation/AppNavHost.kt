@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.hilleliot.shop.ui.composable.screen.articledetail.ArticleDetailScreen
 import com.hilleliot.shop.ui.composable.screen.cart.CartScreen
 import com.hilleliot.shop.ui.composable.screen.checkout.CheckoutScreen
 import com.hilleliot.shop.ui.composable.screen.home.HomeScreen
@@ -61,8 +62,16 @@ fun AppNavHost(
                 },
                 onNavigateToProducts = {
                     navController.navigate(NavRoute.Products)
-                }
+                },
+                onNavigateToArticle = { index ->
+                    navController.navigate(route = NavRoute.ArticleDetail(index = index))
+                },
             )
+        }
+
+        composable<NavRoute.ArticleDetail> { backStackEntry ->
+            val route: NavRoute.ArticleDetail = backStackEntry.toRoute()
+            ArticleDetailScreen(index = route.index)
         }
 
         composable<NavRoute.Products> {

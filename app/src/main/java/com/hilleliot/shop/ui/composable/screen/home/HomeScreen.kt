@@ -39,7 +39,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.hilleliot.shop.R
+import com.hilleliot.shop.data.model.DecorTip
 import com.hilleliot.shop.data.model.Product
+import com.hilleliot.shop.data.model.decorTips
 import com.hilleliot.shop.ui.composable.shared.DataBasedContainer
 import com.hilleliot.shop.ui.state.DataUiState
 import com.hilleliot.shop.ui.theme.HEDarkBlue
@@ -49,20 +51,13 @@ import com.hilleliot.shop.ui.theme.HESoftBlue
 import com.hilleliot.shop.ui.viewmodel.ProductViewModel
 import org.koin.androidx.compose.koinViewModel
 
-private val decor_tips = listOf(
-    DecorTip("Layer Textures for Depth", "Combine wool, linen, and velvet cushions on your sofa for a luxurious layered look that adds warmth and visual interest.", "file:///android_asset/tip_1.jpg"),
-    DecorTip("Bring the Outdoors In", "Houseplants purify air and add life to any room. Group plants of different heights for a natural, organic display.", "file:///android_asset/tip_2.jpg"),
-    DecorTip("The Rule of Three", "Arrange décor items in odd numbers. Three candles, three vases, or three books create the most visually pleasing groupings.", "file:///android_asset/tip_3.jpg"),
-)
-
-data class DecorTip(val title: String, val body: String, val imageUrl: String)
-
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: ProductViewModel = koinViewModel(),
     onNavigateToProductDetails: (Int) -> Unit,
     onNavigateToProducts: () -> Unit,
+    onNavigateToArticle: (Int) -> Unit,
 ) {
     val productsState by viewModel.productsState.collectAsState()
 
@@ -88,8 +83,11 @@ fun HomeScreen(
                 contentPadding = PaddingValues(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                items(decor_tips) { tip ->
-                    DecorTipCard(tip = tip)
+                items(decorTips.size) { index ->
+                    DecorTipCard(
+                        tip = decorTips[index],
+                        onClick = { onNavigateToArticle(index) },
+                    )
                 }
             }
         }
@@ -183,10 +181,11 @@ private fun HeroBanner(onShopNowClick: () -> Unit) {
 }
 
 @Composable
-private fun DecorTipCard(tip: DecorTip) {
+private fun DecorTipCard(tip: DecorTip, onClick: () -> Unit) {
     Card(
         modifier = Modifier
-            .width(220.dp),
+            .width(220.dp)
+            .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
         colors = CardDefaults.cardColors(

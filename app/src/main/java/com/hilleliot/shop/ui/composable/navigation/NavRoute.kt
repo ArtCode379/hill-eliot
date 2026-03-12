@@ -12,4 +12,5 @@ sealed class NavRoute {
     @Serializable object Orders : NavRoute()
     @Serializable object Settings : NavRoute()
     @Serializable data class ProductDetails(val id: Int) : NavRoute()
+    @Serializable data class ArticleDetail(val index: Int) : NavRoute()
 }
