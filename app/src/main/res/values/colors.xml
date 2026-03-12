@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hill Eliot brand colors -->
+    <color name="he_primary_blue">#4A90E2</color>
+    <color name="he_dark_blue">#2C6BAD</color>
+    <color name="he_soft_blue">#E8F2FD</color>
+    <color name="he_light_blue">#F5FAFF</color>
+    <color name="he_text_primary">#1F2937</color>
+    <color name="he_text_secondary">#6B7280</color>
+    <color name="he_background">#F9FAFB</color>
+    <color name="he_surface">#FFFFFF</color>
+    <color name="he_border_light">#E5E7EB</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
